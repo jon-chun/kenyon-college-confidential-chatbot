@@ -1,0 +1,38 @@
+[project]
+name = "kenyon-confidential-bot"
+version = "0.1.0"
+description = "Self-evolving Kenyon College Confidential Bot using Karpathy's 3-layer LLM Wiki architecture"
+requires-python = ">=3.12"
+dependencies = [
+    "crawl4ai>=0.6.0",
+    "playwright>=1.49.0",
+    "markdownify>=0.14.1",
+    "aiohttp>=3.11.0",
+    "tenacity>=9.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.25.0",
+    "pytest-timeout>=2.3.0",
+    "pytest-cov>=6.0",
+    "ruff>=0.8.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = [
+    "unit: Unit tests (no network)",
+    "integration: Integration tests (may use network)",
+    "e2e: End-to-end tests (full pipeline)",
+    "slow: Slow tests that hit live sites",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
